@@ -233,7 +233,7 @@ class MPVProcess:
 
         args.extend("--{0}={1}".format(v[0].replace("_", "-"), self._mpv_fmt(v[1]))
                     for v in arg_pairs)
-        self.process = subprocess.Popen(args)
+        self.process = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
         ipc_exists = False
         for _ in range(100): # Give MPV 10 seconds to start.
             time.sleep(0.1)
